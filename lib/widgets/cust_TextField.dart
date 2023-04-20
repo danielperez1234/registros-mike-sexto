@@ -52,6 +52,9 @@ class _CustTextFieldState extends State<CustTextField> {
               keyboardType: widget.textInputType,
               obscureText: isObscure,
               decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 20, right: 20),
+                  //labelText: 'Ingresa tu informacion',
+                  hintText: 'Please enter a search term',
                   border: InputBorder.none,
                   errorBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
