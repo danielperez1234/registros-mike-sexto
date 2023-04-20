@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:productos/widgets/cust_TextField.dart';
 
 void main() {
   runApp(const MyApp());
@@ -95,6 +96,10 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            CustTextField(
+              textEditingController: TextEditingController(),
+              isObscure: true,
+            ),
             const Text(
               'You have pushed the button this many times:',
             ),
