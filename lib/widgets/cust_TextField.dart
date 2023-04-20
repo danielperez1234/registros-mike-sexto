@@ -40,6 +40,7 @@ class _CustTextFieldState extends State<CustTextField> {
     return Container(
       width: MediaQuery.of(context).size.width * .8,
       height: 60,
+      padding: EdgeInsets.only(left: 20, right: 20),
       decoration: BoxDecoration(
           color: Colors.amber,
           borderRadius: BorderRadius.circular(15),
@@ -52,7 +53,6 @@ class _CustTextFieldState extends State<CustTextField> {
               keyboardType: widget.textInputType,
               obscureText: isObscure,
               decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(left: 20, right: 20),
                   //labelText: 'Ingresa tu informacion',
                   hintText: 'Please enter a search term',
                   border: InputBorder.none,
