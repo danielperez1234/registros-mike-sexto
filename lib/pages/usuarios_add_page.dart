@@ -3,6 +3,8 @@ import 'package:productos/constantes.dart';
 import 'package:productos/widgets/cust_TextField.dart';
 import 'package:productos/widgets/cust_scaffold.dart';
 
+import '../widgets/cust_button.dart';
+
 class UserAddPage extends StatelessWidget {
   UserAddPage({Key? key}) : super(key: key);
   var nombre = TextEditingController();
@@ -29,7 +31,12 @@ class UserAddPage extends StatelessWidget {
               textInputType: TextInputType.numberWithOptions(decimal: false)),
           CustTextField(textEditingController: genero, hint: "Genero"),
           CustTextField(textEditingController: correo, hint: "Correo"),
-          CustTextField(textEditingController: contrasena, hint: "Contraseña")
+          CustTextField(textEditingController: contrasena, hint: "Contraseña"),
+          CustButton(
+              text: "REGISTRAR",
+              onPress: () {
+                Navigator.pop(context);
+              })
         ],
       ),
     ));

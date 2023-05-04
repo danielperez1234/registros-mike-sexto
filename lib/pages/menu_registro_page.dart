@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:productos/constantes.dart';
+import 'package:productos/pages/compras_page.dart';
+import 'package:productos/pages/productos_add_page.dart';
 import 'package:productos/pages/usuarios_add_page.dart';
+import 'package:productos/pages/ventas_page.dart';
 import 'package:productos/widgets/cust_button.dart';
 import 'package:productos/widgets/cust_scaffold.dart';
 
@@ -16,7 +19,7 @@ class MenuRegistroPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           CustButton(
-              text: "Usuarios",
+              text: "Registrar".toUpperCase(),
               onPress: () async {
                 var x = await showDialog(
                     barrierColor: kGray.withOpacity(.75),
@@ -36,7 +39,7 @@ class MenuRegistroPage extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             CustButton(
-                                text: "usuarios",
+                                text: "usuarios".toUpperCase(),
                                 onPress: () {
                                   Navigator.pop(context);
                                   Navigator.push(
@@ -44,14 +47,32 @@ class MenuRegistroPage extends StatelessWidget {
                                       MaterialPageRoute(
                                           builder: (_) => UserAddPage()));
                                 }),
-                            CustButton(text: "productos", onPress: () {})
+                            CustButton(
+                                text: "productos".toUpperCase(),
+                                onPress: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => ProductosAddPage()));
+                                })
                           ],
                         ),
                       );
                     });
               }),
-          CustButton(text: "Ventas", onPress: () {}),
-          CustButton(text: "Compras", onPress: () {}),
+          CustButton(
+              text: "Ventas",
+              onPress: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => VentasPage()));
+              }),
+          CustButton(
+              text: "Compras",
+              onPress: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => ComprasPage()));
+              }),
         ],
       ),
     ));
