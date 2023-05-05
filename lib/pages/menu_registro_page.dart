@@ -31,7 +31,7 @@ class MenuRegistroPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25)),
                         backgroundColor: kBackGround.withOpacity(.75),
                         title: Text(
-                          "Que decea agregar",
+                          "Que desea agregar",
                           style: Titulos(color: kWhite),
                           textAlign: TextAlign.center,
                         ),

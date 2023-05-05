@@ -16,7 +16,8 @@ class LoginPage extends StatelessWidget {
       body: Column(
         children: [
           Center(
-              child: Text("log - in", style: Titulos(color: kWhite, size: 35))),
+              child:
+                  Text("Log - I  n", style: Titulos(color: kWhite, size: 35))),
           Container(
             height: MediaQuery.of(context).size.height * 2 / 3,
             child: Column(
@@ -29,7 +30,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 CustTextField(
                   textEditingController: password,
-                  hint: 'Contraseña',
+                  hint: 'Clave',
                   isObscure: true,
                 ),
                 CustButton(
