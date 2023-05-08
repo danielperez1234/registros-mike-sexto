@@ -28,8 +28,8 @@ class ProductosAddPage extends StatelessWidget {
               textEditingController: descripcion, hint: "Descripcion"),
           CustTextField(textEditingController: algo, hint: "Algo"),
           CustTextField(textEditingController: algo2, hint: "Algo2"),
-          CustTextField(textEditingController: precio, hint: "Precio"),
-          CustTextField(textEditingController: utilidad, hint: "Utilidad"),
+          CustTextField(textEditingController: precio, hint: "Precio",textInputType: TextInputType.number,),
+          CustTextField(textEditingController: utilidad, hint: "Utilidad",textInputType: TextInputType.number,),
           CustButton(
               text: "REGISTRAR",
               onPress: () {

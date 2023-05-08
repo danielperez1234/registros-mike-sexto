@@ -28,9 +28,9 @@ class ComprasPage extends StatelessWidget {
                 const TextInputType.numberWithOptions(decimal: false),
           ),
           CustTextField(textEditingController: nombre, hint: "name"),
-          CustTextField(textEditingController: piezas, hint: "Piezas"),
+          CustTextField(textEditingController: piezas, hint: "Piezas",textInputType:  TextInputType.numberWithOptions(decimal: false),),
           CustTextField(
-              textEditingController: idAdmin, hint: "ID administrador"),
+              textEditingController: idAdmin, hint: "ID administrador",textInputType:  TextInputType.numberWithOptions(decimal: false),),
           CustButton(
               text: "REGISTRAR",
               onPress: () {

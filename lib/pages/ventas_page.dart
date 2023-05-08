@@ -36,13 +36,13 @@ class VentasPage extends StatelessWidget {
           CustTextField(
             textEditingController: cantidad,
             hint: "Cantidad",
-            textInputType: TextInputType.number,
+            textInputType:  TextInputType.numberWithOptions(decimal: false),
           ),
-          CustTextField(textEditingController: idVendedor, hint: "ID vendedor"),
-          CustTextField(textEditingController: idCliente, hint: "ID cliente"),
-          CustTextField(textEditingController: piezas, hint: "Piezas"),
-          CustTextField(textEditingController: subtotal, hint: "Sub total"),
-          CustTextField(textEditingController: total, hint: "Total"),
+          CustTextField(textEditingController: idVendedor, hint: "ID vendedor",textInputType:  TextInputType.numberWithOptions(decimal: false),),
+          CustTextField(textEditingController: idCliente, hint: "ID cliente",textInputType:  TextInputType.numberWithOptions(decimal: false),),
+          CustTextField(textEditingController: piezas, hint: "Piezas",textInputType: TextInputType.numberWithOptions(decimal: false),),
+          CustTextField(textEditingController: subtotal, hint: "Sub total",textInputType: TextInputType.number,),
+          CustTextField(textEditingController: total, hint: "Total",textInputType: TextInputType.number,),
           CustButton(
               text: "REGISTRAR",
               onPress: () {

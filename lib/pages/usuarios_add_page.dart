@@ -28,9 +28,10 @@ class UserAddPage extends StatelessWidget {
           CustTextField(
               textEditingController: edad,
               hint: "Edad",
-              textInputType: TextInputType.emailAddress),
+              textInputType:
+                  const TextInputType.numberWithOptions(signed: false, decimal: false)),
           CustTextField(textEditingController: genero, hint: "Genero"),
-          CustTextField(textEditingController: correo, hint: "Correo"),
+          CustTextField(textEditingController: correo, hint: "Correo",textInputType: TextInputType.emailAddress,),
           CustTextField(textEditingController: contrasena, hint: "Clave"),
           CustButton(
               text: "REGISTRAR",
