@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:productos/constantes.dart';
+import 'package:productos/sevices/firebaseNetwork.dart';
 import 'package:productos/widgets/cust_TextField.dart';
 import 'package:productos/widgets/cust_scaffold.dart';
 
@@ -18,9 +19,9 @@ class UserAddPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustScaffold(
         body: Form(
-          key: _formKey,
-          child: Center(
-              child: Column(
+      key: _formKey,
+      child: Center(
+        child: Column(
           children: [
             Text(
               "Registro",
@@ -31,23 +32,27 @@ class UserAddPage extends StatelessWidget {
             CustTextField(
                 textEditingController: edad,
                 hint: "Edad",
-                textInputType: const TextInputType.numberWithOptions(decimal: false)),
+                textInputType:
+                    const TextInputType.numberWithOptions(decimal: false)),
             CustTextField(textEditingController: genero, hint: "Genero"),
-            CustTextField(textEditingController: correo, hint: "Correo",textInputType: TextInputType.emailAddress,),
+            CustTextField(
+              textEditingController: correo,
+              hint: "Correo",
+              textInputType: TextInputType.emailAddress,
+            ),
             CustTextField(textEditingController: contrasena, hint: "Clave"),
             CustButton(
                 text: "REGISTRAR",
-                onPress: () {
-                if (_formKey.currentState!.validate()){
-                  Navigator.pop(context);
-                }else{
-
-                }
-                  
+                onPress: () async {
+                  if (_formKey.currentState!.validate()) {
+                    await MyFireStore().register(context, correo.text,
+                        contrasena.text, genero.text, edad.text, apellido.text);
+                    Navigator.pop(context);
+                  } else {}
                 })
           ],
-              ),
-            ),
-        ));
+        ),
+      ),
+    ));
   }
 }

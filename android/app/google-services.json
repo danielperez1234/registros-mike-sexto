@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "41074511392",
+    "project_id": "registrossexto",
+    "storage_bucket": "registrossexto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41074511392:android:a05d4544383a73615b7645",
+        "android_client_info": {
+          "package_name": "com.example.productos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41074511392-jf5ssn6f5lemp1uvd7c70oi8m9dvn06i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxBkyoddrEjpGnHKqItzSWc7OxRxHmMdM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41074511392-jf5ssn6f5lemp1uvd7c70oi8m9dvn06i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

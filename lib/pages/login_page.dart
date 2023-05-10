@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:productos/constantes.dart';
 import 'package:productos/pages/menu_registro_page.dart';
 import 'package:productos/pages/usuarios_add_page.dart';
+import 'package:productos/sevices/firebaseNetwork.dart';
 import 'package:productos/widgets/cust_TextField.dart';
 import 'package:productos/widgets/cust_button.dart';
 import 'package:productos/widgets/cust_scaffold.dart';
@@ -51,9 +52,13 @@ class LoginPage extends StatelessWidget {
             ),
             Center(
               child: TextButton(
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => UserAddPage()));
+                onPressed: () async {
+                  var f = await MyFireStore().login(usuario.text, password.text, context);
+                  if(f) {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => UserAddPage()));
+                  }
+                  +
                 },
                 child: Text(
                   'registrar',
