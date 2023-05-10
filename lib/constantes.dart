@@ -29,7 +29,7 @@ TextStyle Medianos(
         decoration: decoration);
 
 //Para los textos chicos:
-TextStyle Chicos() => TextStyle(
+TextStyle Chicos() => const TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w100,
       color: kBlack,

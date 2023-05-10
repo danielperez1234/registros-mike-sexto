@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:productos/constantes.dart';
@@ -10,7 +9,7 @@ class CustScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           gradient: RadialGradient(
               colors: [kBackGround, kBackGround],
               center: Alignment.bottomRight,

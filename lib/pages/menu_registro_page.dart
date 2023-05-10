@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:productos/constantes.dart';
 import 'package:productos/pages/compras_page.dart';
@@ -9,7 +8,7 @@ import 'package:productos/widgets/cust_button.dart';
 import 'package:productos/widgets/cust_scaffold.dart';
 
 class MenuRegistroPage extends StatelessWidget {
-  MenuRegistroPage({Key? key}) : super(key: key);
+  const MenuRegistroPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class MenuRegistroPage extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        contentPadding: EdgeInsets.all(50),
+                        contentPadding: const EdgeInsets.all(50),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25)),
                         backgroundColor: kBackGround.withOpacity(.75),

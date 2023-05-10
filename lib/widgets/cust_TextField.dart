@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:productos/constantes.dart';
 
 class CustTextField extends StatefulWidget {
@@ -13,6 +12,7 @@ class CustTextField extends StatefulWidget {
   bool isObscure;
   String hint;
   TextInputType textInputType;
+  
 
   @override
   State<CustTextField> createState() => _CustTextFieldState();
@@ -40,7 +40,7 @@ class _CustTextFieldState extends State<CustTextField> {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 10),
+          margin: const EdgeInsets.only(top: 10),
           height: 20,
           child: Text(
             widget.textEditingController.text != "" ? widget.hint : "",
@@ -50,8 +50,8 @@ class _CustTextFieldState extends State<CustTextField> {
         Container(
           width: MediaQuery.of(context).size.width * .8,
           height: 60,
-          margin: EdgeInsets.only(bottom: 15),
-          padding: EdgeInsets.only(left: 20, right: 20),
+          margin: const EdgeInsets.only(bottom: 15),
+          padding: const EdgeInsets.only(left: 20, right: 20),
           decoration: BoxDecoration(
               color: kWhite.withOpacity(.1),
               borderRadius: BorderRadius.circular(15),
@@ -66,6 +66,12 @@ class _CustTextFieldState extends State<CustTextField> {
                       keyboardType: widget.textInputType,
                       obscureText: isObscure,
                       textAlign: TextAlign.center,
+                      validator: (value) {
+                        if(value == null || value.isEmpty){
+                          return "Por favor no lo dejes en blanco";
+                        }
+                        return null;
+                      },
                       style:
                           Medianos(color: kWhite, size: 18, letterSpacing: 5),
                       decoration: InputDecoration(
@@ -86,7 +92,7 @@ class _CustTextFieldState extends State<CustTextField> {
                   ),
                   if (widget.isObscure)
                     GestureDetector(
-                      child: Icon(
+                      child: const Icon(
                         Icons.visibility,
                         color: kGray,
                       ),

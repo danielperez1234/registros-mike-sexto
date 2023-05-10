@@ -13,30 +13,40 @@ class ProductosAddPage extends StatelessWidget {
   var algo2 = TextEditingController();
   var precio = TextEditingController();
   var utilidad = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return CustScaffold(
-        body: Center(
-      child: Column(
-        children: [
-          Text(
-            "Productos",
-            style: Titulos(color: kWhite, size: 35),
-          ),
-          CustTextField(textEditingController: nombre, hint: "Nombre"),
-          CustTextField(
-              textEditingController: descripcion, hint: "Descripcion"),
-          CustTextField(textEditingController: algo, hint: "Algo"),
-          CustTextField(textEditingController: algo2, hint: "Algo2"),
-          CustTextField(textEditingController: precio, hint: "Precio",textInputType: TextInputType.number,),
-          CustTextField(textEditingController: utilidad, hint: "Utilidad",textInputType: TextInputType.number,),
-          CustButton(
-              text: "REGISTRAR",
-              onPress: () {
-                Navigator.pop(context);
-              })
-        ],
-      ),
-    ));
+        body: Form(
+          key: _formKey,
+          child: Center(
+              child: Column(
+          children: [
+            Text(
+              "Productos",
+              style: Titulos(color: kWhite, size: 35),
+            ),
+            CustTextField(textEditingController: nombre, hint: "Nombre"),
+            CustTextField(
+                textEditingController: descripcion, hint: "Descripcion"),
+            CustTextField(textEditingController: algo, hint: "Algo"),
+            CustTextField(textEditingController: algo2, hint: "Algo2"),
+            CustTextField(textEditingController: precio, hint: "Precio",textInputType: TextInputType.number,),
+            CustTextField(textEditingController: utilidad, hint: "Utilidad",textInputType: TextInputType.number,),
+            CustButton(
+                text: "REGISTRAR",
+                onPress: () {
+                if (_formKey.currentState!.validate()){
+                  Navigator.pop(context);
+                }else{
+
+                }
+                  
+                })
+          ],
+              ),
+            ),
+        ));
   }
 }

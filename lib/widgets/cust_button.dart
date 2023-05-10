@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:productos/constantes.dart';
 
 class CustButton extends StatelessWidget {
@@ -10,20 +8,24 @@ class CustButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 12),
+      margin: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
           boxShadow: [
             BoxShadow(
                 color: kRed.withOpacity(1),
                 blurRadius: 10,
-                offset: Offset(0, 8))
+                offset: const Offset(0, 8))
           ]),
       child: RawMaterialButton(
         highlightElevation: 2,
         fillColor: kWhite,
         hoverColor: kBlack.withOpacity(.05),
         splashColor: kRed.withOpacity(.3),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+        onPressed: () {
+          onPress();
+        },
         child: Container(
             alignment: Alignment.center,
             height: 50,
@@ -38,10 +40,6 @@ class CustButton extends StatelessWidget {
                 ),
               ],
             )),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-        onPressed: () {
-          onPress();
-        },
       ),
     );
   }

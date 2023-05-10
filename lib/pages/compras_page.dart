@@ -7,6 +7,7 @@ import '../widgets/cust_button.dart';
 
 class ComprasPage extends StatelessWidget {
   ComprasPage({Key? key}) : super(key: key);
+  final _formKey = GlobalKey<FormState>();
   var idProduct = TextEditingController();
   var nombre = TextEditingController();
   var piezas = TextEditingController();
@@ -14,30 +15,38 @@ class ComprasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustScaffold(
-        body: Center(
-      child: Column(
-        children: [
-          Text(
-            "compras",
-            style: Titulos(color: kWhite, size: 35),
-          ),
-          CustTextField(
-            textEditingController: idProduct,
-            hint: "Id producto",
-            textInputType:
-                const TextInputType.numberWithOptions(decimal: false),
-          ),
-          CustTextField(textEditingController: nombre, hint: "name"),
-          CustTextField(textEditingController: piezas, hint: "Piezas",textInputType:  TextInputType.numberWithOptions(decimal: false),),
-          CustTextField(
-              textEditingController: idAdmin, hint: "ID administrador",textInputType:  TextInputType.numberWithOptions(decimal: false),),
-          CustButton(
-              text: "REGISTRAR",
-              onPress: () {
-                Navigator.pop(context);
-              })
-        ],
-      ),
-    ));
+        body: Form(
+          key: _formKey,
+          child: Center(
+              child: Column(
+          children: [
+            Text(
+              "compras",
+              style: Titulos(color: kWhite, size: 35),
+            ),
+            CustTextField(
+              textEditingController: idProduct,
+              hint: "Id producto",
+              textInputType:
+                  const TextInputType.numberWithOptions(decimal: false),
+            ),
+            CustTextField(textEditingController: nombre, hint: "name"),
+            CustTextField(textEditingController: piezas, hint: "Piezas",textInputType:  TextInputType.numberWithOptions(decimal: false),),
+            CustTextField(
+                textEditingController: idAdmin, hint: "ID administrador",textInputType:  TextInputType.numberWithOptions(decimal: false),),
+            CustButton(
+                text: "REGISTRAR",
+                onPress: () {
+                 if (_formKey.currentState!.validate()){
+                      Navigator.pop(context);
+                  }else{
+
+                  }
+                  
+                })
+          ],
+              ),
+            ),
+        ));
   }
 }

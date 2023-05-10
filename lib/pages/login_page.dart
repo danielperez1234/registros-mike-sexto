@@ -8,54 +8,62 @@ import 'package:productos/widgets/cust_scaffold.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
+  final _formKey = GlobalKey<FormState>();
   final usuario = TextEditingController();
   final password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return CustScaffold(
-      body: Column(
-        children: [
-          Center(
-              child:
-                  Text("Log - I  n", style: Titulos(color: kWhite, size: 35))),
-          Container(
-            height: MediaQuery.of(context).size.height * 2 / 3,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                CustTextField(
-                  textEditingController: usuario,
-                  hint: 'Usuario',
-                ),
-                CustTextField(
-                  textEditingController: password,
-                  hint: 'Clave',
-                  isObscure: true,
-                ),
-                CustButton(
-                    text: "Ingresar",
-                    onPress: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) => MenuRegistroPage()));
-                    })
-              ],
-            ),
-          ),
-          Center(
-            child: TextButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => UserAddPage()));
-              },
-              child: Text(
-                'registrar',
-                style: Medianos(
-                    color: kWhite, decoration: TextDecoration.underline),
+      body: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            Center(
+                child: Text("log - in", style: Titulos(color: kWhite, size: 35))),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 2 / 3,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  CustTextField(
+                    textEditingController: usuario,
+                    hint: 'Usuario',
+                  ),
+                  CustTextField(
+                    textEditingController: password,
+                    hint: 'Contraseña',
+                    isObscure: true,
+                  ),
+                  CustButton(
+                      text: "Ingresar",
+                      onPress: () {
+                 if (_formKey.currentState!.validate()){
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => const MenuRegistroPage()));
+                  }else{
+
+                  }
+
+                      })
+                ],
               ),
             ),
-          )
-        ],
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => UserAddPage()));
+                },
+                child: Text(
+                  'registrar',
+                  style: Medianos(
+                      color: kWhite, decoration: TextDecoration.underline),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
