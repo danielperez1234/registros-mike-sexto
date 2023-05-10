@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:productos/constantes.dart';
+import 'package:productos/sevices/firebase_producto.dart';
 import 'package:productos/widgets/cust_TextField.dart';
 import 'package:productos/widgets/cust_scaffold.dart';
 
@@ -19,9 +20,9 @@ class ProductosAddPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustScaffold(
         body: Form(
-          key: _formKey,
-          child: Center(
-              child: Column(
+      key: _formKey,
+      child: Center(
+        child: Column(
           children: [
             Text(
               "Productos",
@@ -32,21 +33,36 @@ class ProductosAddPage extends StatelessWidget {
                 textEditingController: descripcion, hint: "Descripcion"),
             CustTextField(textEditingController: algo, hint: "Algo"),
             CustTextField(textEditingController: algo2, hint: "Algo2"),
-            CustTextField(textEditingController: precio, hint: "Precio",textInputType: TextInputType.number,),
-            CustTextField(textEditingController: utilidad, hint: "Utilidad",textInputType: TextInputType.number,),
+            CustTextField(
+              textEditingController: precio,
+              hint: "Precio",
+              textInputType: TextInputType.number,
+            ),
+            CustTextField(
+              textEditingController: utilidad,
+              hint: "Utilidad",
+              textInputType: TextInputType.number,
+            ),
             CustButton(
                 text: "REGISTRAR",
-                onPress: () {
-                if (_formKey.currentState!.validate()){
-                  Navigator.pop(context);
-                }else{
-
-                }
-                  
+                onPress: () async {
+                  if (_formKey.currentState!.validate()) {
+                    var x = await FirebaseProduct().addProduct(
+                        context,
+                        nombre.text,
+                        descripcion.text,
+                        algo.text,
+                        algo2.text,
+                        precio.text,
+                        utilidad.text);
+                    if (x) {
+                      Navigator.pop(context);
+                    }
+                  } else {}
                 })
           ],
-              ),
-            ),
-        ));
+        ),
+      ),
+    ));
   }
 }

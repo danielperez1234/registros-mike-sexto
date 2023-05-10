@@ -45,8 +45,14 @@ class UserAddPage extends StatelessWidget {
                 text: "REGISTRAR",
                 onPress: () async {
                   if (_formKey.currentState!.validate()) {
-                    await MyFireStore().register(context, correo.text,
-                        contrasena.text, genero.text, edad.text, apellido.text);
+                    await MyFireStore().register(
+                        context,
+                        correo.text,
+                        contrasena.text,
+                        genero.text,
+                        nombre.text,
+                        edad.text,
+                        apellido.text);
                     Navigator.pop(context);
                   } else {}
                 })

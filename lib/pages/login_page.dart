@@ -20,7 +20,8 @@ class LoginPage extends StatelessWidget {
         child: Column(
           children: [
             Center(
-                child: Text("log - in", style: Titulos(color: kWhite, size: 35))),
+                child:
+                    Text("log - in", style: Titulos(color: kWhite, size: 35))),
             SizedBox(
               height: MediaQuery.of(context).size.height * 2 / 3,
               child: Column(
@@ -38,14 +39,15 @@ class LoginPage extends StatelessWidget {
                   ),
                   CustButton(
                       text: "Ingresar",
-                      onPress: () {
-                 if (_formKey.currentState!.validate()){
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => const MenuRegistroPage()));
-                  }else{
-
-                  }
-
+                      onPress: () async {
+                        if (_formKey.currentState!.validate()) {
+                          var f = await MyFireStore()
+                              .login(usuario.text, password.text, context);
+                          if (f) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) => const MenuRegistroPage()));
+                          } else {}
+                        }
                       })
                 ],
               ),
@@ -53,12 +55,8 @@ class LoginPage extends StatelessWidget {
             Center(
               child: TextButton(
                 onPressed: () async {
-                  var f = await MyFireStore().login(usuario.text, password.text, context);
-                  if(f) {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => UserAddPage()));
-                  }
-                  +
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => UserAddPage()));
                 },
                 child: Text(
                   'registrar',

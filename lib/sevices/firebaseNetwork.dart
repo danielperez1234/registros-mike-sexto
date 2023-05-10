@@ -5,18 +5,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MyFireStore {
-  final CollectionReference chatCollection =
-      FirebaseFirestore.instance.collection('chats');
+  final CollectionReference productCollection =
+      FirebaseFirestore.instance.collection('product');
   final CollectionReference usrCollection =
       FirebaseFirestore.instance.collection('users');
 
   final _auth = FirebaseAuth.instance;
   Future<bool> register(BuildContext context, String email, String password,
-      String genero, String edad, String apellido) async {
+      String genero, String nombre, String edad, String apellido) async {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       usrCollection.add({
+        "nombre": nombre,
         "correo": email,
         "genero": genero,
         "edad": edad,

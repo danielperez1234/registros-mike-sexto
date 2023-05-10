@@ -29,9 +29,9 @@ TextStyle Medianos(
         decoration: decoration);
 
 //Para los textos chicos:
-TextStyle Chicos() => const TextStyle(
+TextStyle Chicos({Color color = kBlack}) => TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w100,
-      color: kBlack,
+      color: color,
       fontFamily: 'Montserrat',
     );
