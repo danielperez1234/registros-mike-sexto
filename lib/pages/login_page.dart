@@ -30,7 +30,8 @@ class LoginPage extends StatelessWidget {
                 children: [
                   CustTextField(
                     textEditingController: usuario,
-                    hint: 'Usuario',
+                    textInputType: TextInputType.emailAddress,
+                    hint: 'Correo',
                   ),
                   CustTextField(
                     textEditingController: password,

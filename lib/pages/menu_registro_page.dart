@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:productos/constantes.dart';
 import 'package:productos/pages/compras_page.dart';
 import 'package:productos/pages/list_products_page.dart';
+import 'package:productos/pages/list_usuarios_page.dart';
+import 'package:productos/pages/list_ventas_page.dart';
 import 'package:productos/pages/productos_add_page.dart';
 import 'package:productos/pages/usuarios_add_page.dart';
 import 'package:productos/pages/ventas_page.dart';
@@ -85,10 +87,10 @@ class MenuRegistroPage extends StatelessWidget {
                                 text: "usuarios".toUpperCase(),
                                 onPress: () {
                                   Navigator.pop(context);
-                                  /*Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => UserAddPage()));*/
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => ListUsuariosPage()));
                                 }),
                             CustButton(
                                 text: "productos".toUpperCase(),
@@ -98,7 +100,16 @@ class MenuRegistroPage extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (_) => ListProductsPage()));
-                                })
+                                }),
+                            CustButton(
+                                text: "ventas".toUpperCase(),
+                                onPress: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => ListVentasPage()));
+                                }),
                           ],
                         ),
                       );

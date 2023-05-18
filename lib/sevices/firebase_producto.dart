@@ -33,4 +33,29 @@ class FirebaseProduct extends MyFireStore {
   Stream<QuerySnapshot<Object?>> streamProducts() {
     return productCollection.snapshots();
   }
+
+  eliminarProducto(String path) {
+    productCollection.doc(path).delete();
+  }
+
+  Stream<DocumentSnapshot<Object?>> getProduct(String id) {
+    return productCollection.doc(id).snapshots();
+  }
+
+  Future<bool> updateProducto(String id, String nombre, String descripcion,
+      String algo, String algo2, String precio, String utilidad) async {
+    try {
+      await productCollection.doc(id).set({
+        "nombre": nombre,
+        "descripcion": descripcion,
+        "algo": algo,
+        "algo2": algo2,
+        "precio": precio,
+        "utilidad": utilidad
+      });
+      return true;
+    } catch (ex) {
+      return false;
+    }
+  }
 }

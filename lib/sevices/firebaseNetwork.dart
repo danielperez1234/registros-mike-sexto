@@ -9,14 +9,15 @@ class MyFireStore {
       FirebaseFirestore.instance.collection('product');
   final CollectionReference usrCollection =
       FirebaseFirestore.instance.collection('users');
-
-  final _auth = FirebaseAuth.instance;
+  final CollectionReference ventasCollection =
+      FirebaseFirestore.instance.collection('ventas');
+  final auth = FirebaseAuth.instance;
   Future<bool> register(BuildContext context, String email, String password,
       String genero, String nombre, String edad, String apellido) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
+      var usrNew = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      usrCollection.add({
+      usrCollection.doc(usrNew.user!.uid).set({
         "nombre": nombre,
         "correo": email,
         "genero": genero,
@@ -42,7 +43,7 @@ class MyFireStore {
 
   Future<bool> login(String user, String password, BuildContext context) async {
     try {
-      await _auth.signInWithEmailAndPassword(email: user, password: password);
+      await auth.signInWithEmailAndPassword(email: user, password: password);
       return true;
     } catch (ex) {
       await showDialog(

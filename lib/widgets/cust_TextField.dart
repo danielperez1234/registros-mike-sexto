@@ -7,12 +7,15 @@ class CustTextField extends StatefulWidget {
       required this.textEditingController,
       required this.hint,
       this.isObscure = false,
-      this.textInputType = TextInputType.text});
+      this.textInputType = TextInputType.text,
+      this.onChange,
+      this.validate = true});
   TextEditingController textEditingController;
   bool isObscure;
   String hint;
+  bool validate;
   TextInputType textInputType;
-
+  Function(String)? onChange;
   @override
   State<CustTextField> createState() => _CustTextFieldState();
 }
@@ -47,14 +50,17 @@ class _CustTextFieldState extends State<CustTextField> {
           ),
         ),
         FormField<String>(
-          validator: (value) {
-            print(value);
-            if (value == null || value.isEmpty) {
-              return "Por favor no lo dejes en blanco";
-            }
-            return null;
-          },
+          validator: widget.validate
+              ? (value) {
+                  print(value);
+                  if (value == null || value.isEmpty) {
+                    return "Por favor no lo dejes en blanco";
+                  }
+                  return null;
+                }
+              : null,
           builder: (FormFieldState<dynamic> field) {
+            field.setValue(widget.textEditingController.text);
             return Column(
               children: [
                 Container(
@@ -92,6 +98,8 @@ class _CustTextFieldState extends State<CustTextField> {
                               onChanged: (s) {
                                 field.setValue(s);
                                 setState(() {});
+                                if (widget.onChange != null)
+                                  widget.onChange!(s);
                               },
                             ),
                           ),
@@ -118,7 +126,7 @@ class _CustTextFieldState extends State<CustTextField> {
                 if (field.hasError)
                   Text(
                     field.errorText ?? "",
-                    style: Chicos(color: Colors.white),
+                    style: Chicos(color: kWhite),
                   )
               ],
             );

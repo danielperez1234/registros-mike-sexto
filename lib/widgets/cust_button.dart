@@ -10,15 +10,18 @@ class CustButton extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
-          boxShadow: [
+        borderRadius: BorderRadius.circular(25),
+        /*boxShadow: [
             BoxShadow(
                 color: kRed.withOpacity(1),
                 blurRadius: 10,
                 offset: const Offset(0, 8))
-          ]),
+          ]*/
+      ),
       child: RawMaterialButton(
-        highlightElevation: 2,
+        highlightElevation: 0,
+        elevation: 0,
+        focusElevation: 0,
         fillColor: kWhite,
         hoverColor: kBlack.withOpacity(.05),
         splashColor: kRed.withOpacity(.3),

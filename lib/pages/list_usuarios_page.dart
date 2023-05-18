@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:productos/dialogs/app_alert_dialog.dart';
 import 'package:productos/constantes.dart';
 import 'package:productos/pages/productos_add_page.dart';
+import 'package:productos/pages/usuarios_add_page.dart';
+import 'package:productos/sevices/firebaseNetwork.dart';
 import 'package:productos/sevices/firebase_producto.dart';
+import 'package:productos/sevices/firebase_usuario.dart';
 import 'package:productos/widgets/cust_scaffold.dart';
 
-class ListProductsPage extends StatelessWidget {
-  const ListProductsPage({Key? key}) : super(key: key);
+class ListUsuariosPage extends StatelessWidget {
+  const ListUsuariosPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class ListProductsPage extends StatelessWidget {
         Container(
           height: 60,
           child: Text(
-            "Productos",
+            "Usuarios",
             style: Titulos(
               color: kWhite,
             ),
@@ -25,7 +28,7 @@ class ListProductsPage extends StatelessWidget {
           alignment: Alignment.center,
         ),
         StreamBuilder(
-          stream: FirebaseProduct().streamProducts(),
+          stream: FirebaseUsuarios().streamUsuarios(),
           builder: (context, data) {
             if (data.hasError) return Container();
             if (!data.hasData) return Container();
@@ -35,31 +38,19 @@ class ListProductsPage extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
                           onTap: () async {
-                            await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => ProductosAddPage(
-                                          nombreS: e["nombre"],
-                                          descripcionS: e["descripcion"],
-                                          algoS: e["algo"],
-                                          algo2S: e["algo2"],
-                                          precioS: e["precio"],
-                                          utilidadS: e["utilidad"],
-                                          id: e.id,
-                                        )));
-                          },
-                          onLongPress: () async {
-                            appAlertDialog(context, "Eliminar",
-                                "¿Desea eliminar el producto?",
-                                actionNo: "Eliminar",
-                                onActionNo: () {
-                                  FirebaseProduct().eliminarProducto(e.id);
-                                  Navigator.pop(context);
-                                },
-                                actionOk: "Cancelar",
-                                onActionOk: () {
-                                  Navigator.pop(context);
-                                });
+                            if (MyFireStore().auth.currentUser?.uid == e.id) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => UserAddPage(
+                                            id: e.id,
+                                            nombreS: e["nombre"],
+                                            apellidoS: e["apellido"],
+                                            correoS: e["correo"],
+                                            edadS: e["edad"],
+                                            generoS: e["genero"],
+                                          )));
+                            }
                           },
                           tileColor: kWhite.withOpacity(.24),
                           contentPadding: EdgeInsets.symmetric(
@@ -71,7 +62,7 @@ class ListProductsPage extends StatelessWidget {
                             style: Medianos(color: kWhite),
                           ),
                           trailing: Text(
-                            r'$' + e["precio"],
+                            e["edad"] + " Años",
                             style: Chicos(color: kGray),
                           ),
                         ),

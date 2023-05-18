@@ -7,17 +7,45 @@ import 'package:productos/widgets/cust_scaffold.dart';
 import '../widgets/cust_button.dart';
 
 class ProductosAddPage extends StatelessWidget {
-  ProductosAddPage({Key? key}) : super(key: key);
-  var nombre = TextEditingController();
-  var descripcion = TextEditingController();
-  var algo = TextEditingController();
-  var algo2 = TextEditingController();
-  var precio = TextEditingController();
-  var utilidad = TextEditingController();
+  ProductosAddPage(
+      {Key? key,
+      this.nombreS = "",
+      this.descripcionS = "",
+      this.algoS = "",
+      this.algo2S = "",
+      this.precioS = "",
+      this.utilidadS = "",
+      this.id})
+      : super(key: key);
+  String nombreS;
+  String descripcionS;
+  String algoS;
+  String algo2S;
+  String precioS;
+  String utilidadS;
+
+  String? id;
+
+  late TextEditingController nombre;
+  late TextEditingController descripcion;
+  late TextEditingController algo;
+  late TextEditingController algo2;
+  late TextEditingController precio;
+  late TextEditingController utilidad;
+
   final _formKey = GlobalKey<FormState>();
+  void initVar() {
+    nombre = TextEditingController(text: nombreS);
+    descripcion = TextEditingController(text: descripcionS);
+    algo = TextEditingController(text: algoS);
+    algo2 = TextEditingController(text: algo2S);
+    precio = TextEditingController(text: precioS);
+    utilidad = TextEditingController(text: utilidadS);
+  }
 
   @override
   Widget build(BuildContext context) {
+    initVar();
     return CustScaffold(
         body: Form(
       key: _formKey,
@@ -46,6 +74,21 @@ class ProductosAddPage extends StatelessWidget {
             CustButton(
                 text: "REGISTRAR",
                 onPress: () async {
+                  if (id != null) {
+                    var x = await FirebaseProduct().updateProducto(
+                        id!,
+                        nombre.text,
+                        descripcion.text,
+                        algo.text,
+                        algo2.text,
+                        precio.text,
+                        utilidad.text);
+                    if (x) {
+                      Navigator.pop(context);
+                    }
+
+                    return;
+                  }
                   if (_formKey.currentState!.validate()) {
                     var x = await FirebaseProduct().addProduct(
                         context,

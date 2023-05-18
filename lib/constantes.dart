@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-const kWhite = Color.fromARGB(255, 255, 255, 255);
-const kRed = Color(0xff940101);
-const kGray = Color(0xffb78484);
-const kBlack = Color(0xff330000);
-const kBackGround = Color(0xFF000000);
+const kWhite = Color.fromARGB(255, 247, 249, 255);
+const kRed = Color(0xff649aff);
+const kGray = Color(0xff050000);
+const kBlack = Color(0xff001f33);
+const kBackGround = Color(0xFFFF5B4C);
 //Para los titulos:
 TextStyle Titulos({double size = 20, Color color = kRed}) => TextStyle(
       fontSize: size,
