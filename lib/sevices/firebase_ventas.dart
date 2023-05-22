@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:productos/constantes.dart';
 import 'package:productos/sevices/firebaseNetwork.dart';
+import 'package:productos/sevices/firebase_producto.dart';
 
 class FirebaseVentas extends MyFireStore {
   Future<bool> addVenta(
@@ -11,6 +12,7 @@ class FirebaseVentas extends MyFireStore {
       String idCliente,
       String piezas,
       String subTotal,
+      String NewEx,
       String total) async {
     try {
       await ventasCollection.add({
@@ -21,6 +23,7 @@ class FirebaseVentas extends MyFireStore {
         "subTotal": subTotal,
         "total": total
       });
+      FirebaseProduct().updateExistencia(idProducto, NewEx);
       return true;
     } catch (ex) {
       await showDialog(
@@ -48,8 +51,15 @@ class FirebaseVentas extends MyFireStore {
     return ventasCollection.doc(id).snapshots();
   }
 
-  Future<bool> updateVenta(String id, String idProducto, String idVendedor,
-      String idCliente, String piezas, String subTotal, String total) async {
+  Future<bool> updateVenta(
+      String id,
+      String idProducto,
+      String idVendedor,
+      String idCliente,
+      String piezas,
+      String NewEx,
+      String subTotal,
+      String total) async {
     try {
       await ventasCollection.doc(id).set({
         "idProducto": idProducto,
@@ -59,6 +69,7 @@ class FirebaseVentas extends MyFireStore {
         "subTotal": subTotal,
         "total": total
       });
+      await FirebaseProduct().updateExistencia(idProducto, NewEx);
       return true;
     } catch (ex) {
       return false;

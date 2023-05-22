@@ -3,23 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:productos/constantes.dart';
 import 'package:productos/sevices/firebaseNetwork.dart';
 
-class FirebaseVentas extends MyFireStore {
-  Future<bool> addVenta(
-      BuildContext context,
-      String idProducto,
-      String idVendedor,
-      String idCliente,
-      String piezas,
-      String subTotal,
-      String total) async {
+class FirebaseCompras extends MyFireStore {
+  Future<bool> add(
+    BuildContext context,
+    String idProducto,
+    String idVendedor,
+    String nombre,
+    String piezas,
+  ) async {
     try {
-      await ventasCollection.add({
+      await comprasCollection.add({
         "idProducto": idProducto,
-        "idVendedor": idVendedor,
-        "idCliente": idCliente,
+        "ida": idVendedor,
+        "nombre": nombre,
         "piezas": piezas,
-        "subTotal": subTotal,
-        "total": total
+      });
+      var ext = await productCollection.doc(idProducto).get();
+      await productCollection.doc(idProducto).update({
+        "algo": ((int.tryParse(ext["algo"]) ?? 0) + (int.tryParse(piezas) ?? 0))
+            .toString()
       });
       return true;
     } catch (ex) {
@@ -36,28 +38,31 @@ class FirebaseVentas extends MyFireStore {
     }
   }
 
-  Stream<QuerySnapshot<Object?>> streamVentas() {
-    return ventasCollection.snapshots();
+  Stream<QuerySnapshot<Object?>> streamAll() {
+    return comprasCollection.snapshots();
   }
 
-  eliminarVenta(String path) {
-    ventasCollection.doc(path).delete();
+  eliminar(String path) {
+    comprasCollection.doc(path).delete();
   }
 
-  Stream<DocumentSnapshot<Object?>> getVenta(String id) {
-    return ventasCollection.doc(id).snapshots();
+  Stream<DocumentSnapshot<Object?>> getCompra(String id) {
+    return comprasCollection.doc(id).snapshots();
   }
 
-  Future<bool> updateVenta(String id, String idProducto, String idVendedor,
-      String idCliente, String piezas, String subTotal, String total) async {
+  Future<bool> update(String id, String idProducto, String idVendedor,
+      String nombre, String piezasNew, String diff) async {
     try {
-      await ventasCollection.doc(id).set({
+      await comprasCollection.doc(id).set({
         "idProducto": idProducto,
-        "idVendedor": idVendedor,
-        "idCliente": idCliente,
-        "piezas": piezas,
-        "subTotal": subTotal,
-        "total": total
+        "ida": idVendedor,
+        "nombre": nombre,
+        "piezas": piezasNew,
+      });
+      var ext = await productCollection.doc(idProducto).get();
+      await productCollection.doc(idProducto).update({
+        "algo": ((int.tryParse(ext["algo"]) ?? 0) + (int.tryParse(diff) ?? 0))
+            .toString()
       });
       return true;
     } catch (ex) {

@@ -52,7 +52,7 @@ class UserAddPage extends StatelessWidget {
           children: [
             Text(
               "Registro",
-              style: Titulos(color: kWhite, size: 35),
+              style: Titulos(size: 35),
             ),
             CustTextField(textEditingController: nombre, hint: "Nombre"),
             CustTextField(textEditingController: apellido, hint: "Apellido"),

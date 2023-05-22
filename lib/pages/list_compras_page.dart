@@ -1,14 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:productos/dialogs/app_alert_dialog.dart';
 import 'package:productos/constantes.dart';
+import 'package:productos/pages/compras_page.dart';
 import 'package:productos/pages/productos_add_page.dart';
 import 'package:productos/pages/ventas_page.dart';
+import 'package:productos/sevices/firebase_compras.dart';
 import 'package:productos/sevices/firebase_producto.dart';
 import 'package:productos/sevices/firebase_ventas.dart';
 import 'package:productos/widgets/cust_scaffold.dart';
 
-class ListVentasPage extends StatelessWidget {
-  const ListVentasPage({Key? key}) : super(key: key);
+class ListComprasPage extends StatelessWidget {
+  const ListComprasPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,7 @@ class ListVentasPage extends StatelessWidget {
         Container(
           height: 60,
           child: Text(
-            "Ventas",
+            "Compras",
             style: Titulos(
               color: kWhite,
             ),
@@ -27,7 +31,7 @@ class ListVentasPage extends StatelessWidget {
           alignment: Alignment.center,
         ),
         StreamBuilder(
-          stream: FirebaseVentas().streamVentas(),
+          stream: FirebaseCompras().streamAll(),
           builder: (context, data) {
             if (data.hasError) return Container();
             if (!data.hasData) return Container();
@@ -41,10 +45,10 @@ class ListVentasPage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => VentasPage(
-                                          idCliente: e["idCliente"],
+                                    builder: (_) => ComprasPage(
                                           idProducto: e["idProducto"],
-                                          idVendedor: e["idVendedor"],
+                                          nombre: e["nombre"],
+                                          idAdmin: e["ida"],
                                           piezas: e["piezas"],
                                           id: e.id,
                                         )));
@@ -54,7 +58,7 @@ class ListVentasPage extends StatelessWidget {
                                 "¿Desea eliminar el venta?",
                                 actionNo: "Eliminar",
                                 onActionNo: () {
-                                  FirebaseVentas().eliminarVenta(e.id);
+                                  FirebaseCompras().eliminar(e.id);
                                   Navigator.pop(context);
                                 },
                                 actionOk: "Cancelar",
@@ -83,8 +87,7 @@ class ListVentasPage extends StatelessWidget {
                                   }),
                               Text("Cantidad: ${e["piezas"]}",
                                   style: Chicos(color: kWhite)),
-                              Text(
-                                  "Total: ${(double.tryParse(e["total"]) ?? 0.0).toStringAsFixed(2)}",
+                              Text("Administrador: ${(e["ida"])}",
                                   style: Chicos(color: kWhite))
                             ],
                           ),

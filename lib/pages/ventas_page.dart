@@ -35,6 +35,7 @@ class _VentasPageState extends State<VentasPage> {
   var existencia = 0;
   var idCliente = TextEditingController();
   var piezas = TextEditingController();
+  var difPiezas = 0;
   double subTotal = 0;
   double total = 0;
   @override
@@ -52,6 +53,8 @@ class _VentasPageState extends State<VentasPage> {
     subTotal =
         (double.tryParse(price) ?? 0.0) * (int.tryParse(piezas.text) ?? 0);
     total = subTotal * 1.16;
+    difPiezas =
+        (int.tryParse(piezas.text) ?? 0) - (int.tryParse(widget.piezas) ?? 0);
     print(total.toString() + "  " + subTotal.toString());
   }
 
@@ -81,7 +84,7 @@ class _VentasPageState extends State<VentasPage> {
                 children: [
                   Text(
                     "ventas",
-                    style: Titulos(color: kWhite, size: 35),
+                    style: Titulos(size: 35),
                   ),
                   widget.id != null
                       ? CustTextFixed(text: idProduct, hint: "Id producto")
@@ -140,6 +143,7 @@ class _VentasPageState extends State<VentasPage> {
                                 widget.idVendedor,
                                 idCliente.text,
                                 piezas.text,
+                                ((existencia) + difPiezas).toString(),
                                 subTotal.toString(),
                                 total.toString());
                             if (flag) {
@@ -153,6 +157,7 @@ class _VentasPageState extends State<VentasPage> {
                               MyFireStore().auth.currentUser!.uid,
                               idCliente.text,
                               piezas.text,
+                              ((existencia) + difPiezas).toString(),
                               subTotal.toString(),
                               total.toString());
                           if (flag) {

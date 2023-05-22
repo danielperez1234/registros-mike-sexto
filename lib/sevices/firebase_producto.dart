@@ -38,6 +38,14 @@ class FirebaseProduct extends MyFireStore {
     productCollection.doc(path).delete();
   }
 
+  Future<bool> updateExistencia(String id, String NewEx) async {
+    try {
+      productCollection.doc(id).update({"algo": NewEx});
+      return true;
+    } catch (ex) {}
+    return false;
+  }
+
   Stream<DocumentSnapshot<Object?>> getProduct(String id) {
     return productCollection.doc(id).snapshots();
   }

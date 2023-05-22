@@ -39,7 +39,7 @@ class CustButton extends StatelessWidget {
               children: [
                 Text(
                   text.toUpperCase(),
-                  style: Titulos(size: 20),
+                  style: Titulos(size: 20, color: kBlack),
                 ),
               ],
             )),

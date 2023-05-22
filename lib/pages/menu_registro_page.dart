@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:productos/constantes.dart';
 import 'package:productos/pages/compras_page.dart';
+import 'package:productos/pages/list_compras_page.dart';
 import 'package:productos/pages/list_products_page.dart';
 import 'package:productos/pages/list_usuarios_page.dart';
 import 'package:productos/pages/list_ventas_page.dart';
@@ -28,7 +29,7 @@ class MenuRegistroPage extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        contentPadding: const EdgeInsets.all(50),
+                        contentPadding: const EdgeInsets.all(20),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25)),
                         backgroundColor: kBackGround.withOpacity(.75),
@@ -71,7 +72,7 @@ class MenuRegistroPage extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        contentPadding: const EdgeInsets.all(50),
+                        contentPadding: const EdgeInsets.all(20),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25)),
                         backgroundColor: kBackGround.withOpacity(.75),
@@ -109,6 +110,15 @@ class MenuRegistroPage extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (_) => ListVentasPage()));
+                                }),
+                            CustButton(
+                                text: "compras".toUpperCase(),
+                                onPress: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => ListComprasPage()));
                                 }),
                           ],
                         ),

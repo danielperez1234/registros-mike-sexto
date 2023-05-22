@@ -54,7 +54,7 @@ class ProductosAddPage extends StatelessWidget {
           children: [
             Text(
               "Productos",
-              style: Titulos(color: kWhite, size: 35),
+              style: Titulos(size: 35),
             ),
             CustTextField(textEditingController: nombre, hint: "Nombre"),
             CustTextField(

@@ -11,6 +11,8 @@ class MyFireStore {
       FirebaseFirestore.instance.collection('users');
   final CollectionReference ventasCollection =
       FirebaseFirestore.instance.collection('ventas');
+  final CollectionReference comprasCollection =
+      FirebaseFirestore.instance.collection('compras');
   final auth = FirebaseAuth.instance;
   Future<bool> register(BuildContext context, String email, String password,
       String genero, String nombre, String edad, String apellido) async {

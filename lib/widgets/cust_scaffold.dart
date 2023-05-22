@@ -10,7 +10,7 @@ class CustScaffold extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
           gradient: RadialGradient(
-              colors: [kBackGround, kRed],
+              colors: [kBackGround, kBackGround],
               center: Alignment.bottomRight,
               radius: 2)),
       child: Scaffold(

@@ -19,9 +19,7 @@ class LoginPage extends StatelessWidget {
         key: _formKey,
         child: Column(
           children: [
-            Center(
-                child:
-                    Text("log - in", style: Titulos(color: kWhite, size: 35))),
+            Center(child: Text("log - in", style: Titulos(size: 35))),
             SizedBox(
               height: MediaQuery.of(context).size.height * 2 / 3,
               child: Column(
